@@ -88,7 +88,7 @@ allocproc(void)
 found:
   p->state = EMBRYO;
   p->pid = nextpid++;
-  p->priority = 10;	// default priority
+  p->priority = 10;	// lab2: set default to 10
 
   release(&ptable.lock);
 
@@ -435,17 +435,6 @@ scheduler(void)
       c->proc = p; // get cpu to point to selected process form ptable
       switchuvm(p); // prepares proc's kernel stack and makes TSS point to it. TSS (Task State Segement): pointer for state of task?
       p->state = RUNNING;
-	/*
- * 	  Save current registers in cpu-> scheduler which points to a struct context
- * 	  Load registers from the rpocess's context
- *
- * 	  struct context {
- * 	  	uint edi;
- * 	  	uint esi;
- *		uint ebx;
- *		uint ebp'
- *		uint eip;
- * 	*/
 
       swtch(&(c->scheduler), p->context); // saves current context on proc, and switch to new proc
       switchkvm();

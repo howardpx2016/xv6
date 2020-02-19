@@ -29,5 +29,5 @@ SYSCALL(getpid)
 SYSCALL(sbrk)
 SYSCALL(sleep)
 SYSCALL(uptime)
-SYSCALL(waitpid)
-SYSCALL(setPriority)
+SYSCALL(waitpid) // lab1
+SYSCALL(setPriority) // lab2

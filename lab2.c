@@ -1,6 +1,8 @@
 #include "types.h"
 #include "user.h"
 
+//changes; pass in parameters for exit function, changed setpriority to setPriority to match existing code
+
 int main(int argc, char *argv[])
 {
 	
