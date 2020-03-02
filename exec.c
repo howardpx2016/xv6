@@ -35,7 +35,7 @@ exec(char *path, char **argv)
   if(elf.magic != ELF_MAGIC)
     goto bad;
 
-  if((pgdir = setupkvm()) == 0)
+  if((pgdir = setupkvm()) == 0) // map pages of the kernel to the process address space
     goto bad;
 
   // Load program into memory.
@@ -53,7 +53,7 @@ exec(char *path, char **argv)
       goto bad;
     if(ph.vaddr % PGSIZE != 0)
       goto bad;
-    if(loaduvm(pgdir, (char*)ph.vaddr, ip, ph.off, ph.filesz) < 0)
+    if(loaduvm(pgdir, (char*)ph.vaddr, ip, ph.off, ph.filesz) < 0) //create memory pages for each section and maps them to the address space
       goto bad;
   }
   iunlockput(ip);
